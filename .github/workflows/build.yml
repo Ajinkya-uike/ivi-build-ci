@@ -1,0 +1,29 @@
+name: IVI Build CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR Number'
+        required: true
+      commit_sha:
+        description: 'Commit SHA'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print build inputs
+        run: |
+          echo "Running build for PR #${{ github.event.inputs.pr_number }}"
+          echo "Commit SHA: ${{ github.event.inputs.commit_sha }}"
+
+      - name: Simulate build
+        run: |
+          echo "Building IVI software..."
+          sleep 5
+          echo "Build complete ✅"
